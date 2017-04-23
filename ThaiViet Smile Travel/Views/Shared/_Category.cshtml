@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Category";
+}
+
+<div class="block block-side-nav m2 first" style="margin-top:20px">
+    <div class="block-title" style="margin-bottom:0px">
+        <h4><a style="list-style: none;text-decoration: none;" href="@Url.Action("Index", "Home")">@ThaiVietSmileTravel.Globalization.Resource.titleHome</a></h4>
+    </div>
+    <div class="block-content-cat">
+        <ul class="sf-menu-phone2">
+
+            @*<li class="level0 nav-1 first level-top"><a href="@Url.Action("Index", "Tour", new {categoryId = 1 })">@ThaiVietSmileTravel.Globalization.Resource.TourNorthern</a></li>*@
+
+            <li class="level0 nav-1 first level-top"><a href="@Url.Action("About", "Home")">@ThaiVietSmileTravel.Globalization.Resource.TitleAbout</a></li>
+
+            <li class="level0 nav-1 first level-top"><a href="@Url.Action("Contact", "Home")">@ThaiVietSmileTravel.Globalization.Resource.TitleContact</a></li>
+
+            @*<li class="level0 nav-1 first level-top"><a href="@Url.Action("Index", "Tour", new {categoryId = 4 })">@ThaiVietSmileTravel.Globalization.Resource.TourForeign</a></li>*@
+        </ul>
+    </div>
+</div>
+

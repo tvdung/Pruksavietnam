@@ -1,0 +1,96 @@
+﻿@model ThaiVietSmileTravel.Models.Framework.tbl_Categories
+@{
+    ViewBag.Title = "Create category";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-plus-sign"></i> Thêm danh mục</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round btn-default">
+                            <i class="glyphicon glyphicon-cog"></i>
+                        </a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default">
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+                        </a>
+                        <a href="#" class="btn btn-close btn-round btn-default">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <form role="form">
+                        <div class="row form-group">
+                            @Html.LabelFor(model => model.TenTL, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.TenTL, new { htmlAttributes = new { @class = "form-control", placeholder = "Hãy nhập tên danh mục bằng tiếng việt" } })
+                                @Html.ValidationMessageFor(model => model.TenTL, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            @Html.LabelFor(model => model.TenVN, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.TenVN, new { htmlAttributes = new { @class = "form-control", placeholder = "Hãy nhập tên danh mục bằng tiếng anh" } })
+                                @Html.ValidationMessageFor(model => model.TenVN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            @Html.LabelFor(model => model.TenEN, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.TenEN, new { htmlAttributes = new { @class = "form-control", placeholder = "Hãy nhập tên danh mục bằng thái" } })
+                                @Html.ValidationMessageFor(model => model.TenEN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control textbox-control" } })
+                                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                <input type="button" id="Browse" value="Chọn hình" class="btn btn-default" />
+                            </div>
+                            <script>
+                                $("#Browse").click(function () {
+                                    var finder = new CKFinder();
+                                    finder.selectActionFunction = function (fileUrl) {
+                                        //Lấy file cuối cùng
+                                        //fileUrl = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+                                        $('#HinhAnh').val(fileUrl);
+                                    };
+                                    finder.popup();
+                                })
+                            </script>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-10">
+                                <div class="col-md-3">
+                                    <label class="control-label" style="font-weight:bold;">Trạng thái tour</label>
+                                    @Html.CheckBoxFor(model => model.IsActive, new { @class = "checkbox-inline", @checked = "checked" })
+                                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                </div>
+                                <script>
+                                    $(function () {
+                                        $('#IsActive').bootstrapToggle();
+                                    })
+                                </script>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="margin-bottom: 40px; margin-top: 40px;">Thêm tour</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+}
+

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ThaiVietSmileTravel.Models.Framework.tbl_Categories>
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách danh mục</h2>
+<a class="ajax-link" href="@Url.Action("CreateCategory", "Home")">
+    <i class="glyphicon glyphicon-plus-sign"></i><span> Thêm danh mục</span>
+</a>
+<div class="box-content">
+    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.TenTL)</th>
+                <th>@Html.DisplayNameFor(model => model.TenVN)</th>
+                <th>@Html.DisplayNameFor(model => model.TenEN)</th>
+                <th>@Html.DisplayNameFor(model => model.HinhAnh)</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenTL)
+                    </td>
+                    
+                    <td class="center">
+                        @Html.DisplayFor(modelItem => item.TenVN)
+                    </td>
+                    <td class="center">
+                        @Html.DisplayFor(modelItem => item.TenEN)
+                    </td>
+                    <td class="center">
+                        <img src="@item.HinhAnh" width="80" height="50" class="img-responsive center" />
+                    </td>
+                    <td class="center">
+                        @if (item.IsActive)
+                        {
+                            <span class="label-success label label-default">Hiển thị</span>
+                        }
+                        else
+                        {
+                            <span class="label-default label label-danger">Ẩn</span>
+                        }
+                    </td>
+                    <td class="center">
+                        @*<a class="btn btn-success" target="_blank" href="#">
+                            <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                            Xem
+                        </a>*@
+                        <a class="btn btn-info" href="@Url.Action("EditCategory","Home", new {id = @item.Id })">
+                            <i class="glyphicon glyphicon-edit icon-white"></i>
+                            Sửa
+                        </a>
+                        <a class="btn btn-primary" href="@Url.Action("DeleteConfirmedCategory","Home", new {id = item.Id })">
+                            <i class="glyphicon glyphicon-check icon-white"></i>
+                            Cập nhật trạng thái
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
